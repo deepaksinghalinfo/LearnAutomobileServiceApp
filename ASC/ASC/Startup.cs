@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using ASC.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ASC.Configuration;
 
 namespace ASC
 {
@@ -40,6 +41,8 @@ namespace ASC
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddOptions();
+            services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
